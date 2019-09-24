@@ -3,7 +3,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: #f06e65;
+    margin: 0;
+    background: #567d46;
 }
 
 .game {
@@ -26,13 +27,60 @@ body {
     box-shadow: 4px 4px 12px 0 rgba(0, 0, 0, 0.3);
 }
 
-.car {
+.game-area {
+    position: relative;
+    display: none;
+    width: 300px;
+    height: 100vh;
+    padding: 0 20px;
+    background: #434544;
+    overflow: hidden;
+}
+
+.game-area::before,
+.game-area::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 20px;
+    height: 100%;
+    background: repeating-linear-gradient(to bottom, #e8e8e8, #e8e8e8 20px, #700808 20px, #700808 40px);
+    }
+
+.game-area::before {
+    left: 0;
+}
+
+.game-area::after {
+    right: 0;
+}
+
+.car, .opponent {
+    position: absolute;
+    left: 145px;
+    bottom: 20px;
     width: 50px;
     height: 100px;
-    background: url('./img/car.png') no-repeat;
+    background: url('./img/car.png') no-repeat center;
     background-size: contain;
+}
+
+.opponent {
+    background-image: url('./img/opponent.png');
+}
+
+.line {
+    position: absolute;
+    left: 165px;
+    width: 10px;
+    height: 50px;
+    background: white;
 }
 
 .hidden {
     display: none;
+}
+
+.visible {
+    display: block;
 }
