@@ -16,6 +16,9 @@ body {
 }
 
 .game__start {
+    position: fixed;
+    top: calc(50% - 18px);
+    left: calc(50% - 54px);
     padding: 12px;
     font-weight: bold;
     text-transform: uppercase;
@@ -25,6 +28,7 @@ body {
     outline: none;
     cursor: pointer;
     box-shadow: 4px 4px 12px 0 rgba(0, 0, 0, 0.3);
+    z-index: 1000;
 }
 
 .game-area {
@@ -75,6 +79,22 @@ body {
     width: 10px;
     height: 50px;
     background: white;
+}
+
+.score {
+    position: fixed;
+    left: 40px;
+    top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 100px;
+    font-size: 32px;
+    line-height: 32px;
+    font-family: Arial, sans-serif;
+    background: white;
+    border-radius: 10px;
 }
 
 .hidden {

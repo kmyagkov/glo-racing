@@ -25,6 +25,10 @@ const getElementsQuantity = (height) => {
 const startGame = () => {
     gameStartButton.classList.add('hidden');
     gameArea.classList.add('visible');
+    gameArea.innerHTML = '';
+    car.style.bottom = `${20}px`;
+    car.style.left = `${145}px`;
+    car.style.top = 'auto';
 
     for (let i = 0; i < getElementsQuantity(100); i++) {
         const line = document.createElement('div');
@@ -43,6 +47,7 @@ const startGame = () => {
         gameArea.appendChild(opponent);
     }
 
+    settings.score = 0;
     settings.start = true;
     gameArea.appendChild(car);
     settings.x = car.offsetLeft;
@@ -52,6 +57,9 @@ const startGame = () => {
 
 const playGame = () => {
     if (settings.start) {
+        settings.score += settings.speed;
+        userScore.classList.remove('hidden');
+        userScore.textContent = settings.score;
         moveRoad();
         moveTraffic();
 
@@ -92,7 +100,19 @@ const moveRoad = () => {
 
 const moveTraffic = () => {
     const traffic = document.querySelectorAll('.opponent');
+
     traffic.forEach((opponent) => {
+        let carRect = car.getBoundingClientRect();
+        let opponentRect = opponent.getBoundingClientRect();
+
+        if (carRect.top <= opponentRect.bottom &&
+            carRect.right >= opponentRect.left &&
+            carRect.left <= opponentRect.right &&
+            carRect.bottom >= opponentRect.top) {
+            settings.start = false;
+            gameStartButton.classList.remove('hidden');
+        }
+
         opponent.y += settings.speed / 2;
         opponent.style.top = `${opponent.y}px`;
 
